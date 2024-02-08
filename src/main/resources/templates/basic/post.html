@@ -16,27 +16,55 @@
     </div>
     <div>
         <label for="postId">게시글 ID</label>
-        <input type="text" id="postId" name="postId" class="form-control" value="1" readonly>
+        <input type="text"
+               id="postId"
+               name="postId"
+               class="form-control"
+               value="1"
+               th:value="${post.id}"
+               readonly>
     </div>
     <div>
         <label for="postTitle">게시글 제목</label>
-        <input type="text" id="postTitle" name="postTitle" class="form-control" value="게시글 제목을 여기에 넣어주세요" readonly>
+        <input type="text"
+               id="postTitle"
+               name="postTitle"
+               class="form-control"
+               th:value="${post.title}"
+               readonly>
     </div>
     <div>
         <label for="postContent">게시글 내용</label>
-        <textarea id="postContent" name="postContent" class="form-control" rows="5" readonly>게시글 내용을 여기에 넣어주세요</textarea>
+        <textarea id="postContent"
+                  name="postContent"
+                  class="form-control"
+                  rows="5"
+                  th:text="${post.content}"
+                  readonly></textarea>
     </div>
     <div>
-        <label for="postAuthor">작성자</label>
-        <input type="text" id="postAuthor" name="postAuthor" class="form-control" value="작성자 이름을 여기에 넣어주세요" readonly>
+        <label for="postWriter">작성자</label>
+        <input type="text"
+               id="postWriter"
+               name="postWriter"
+               class="form-control"
+               th:value="${post.writer}"
+               readonly>
     </div>
     <hr class="my-4">
     <div class="row">
         <div class="col">
-            <button class="w-100 btn btn-primary btn-lg" onclick="location.href='editForm.html'" type="button">게시글 수정</button>
+            <button class="w-100 btn btn-primary btn-lg"
+                    onclick="location.href='editForm.html'"
+                    th:onclick="|location.href='@{/basic/posts/{postId}/edit(postId=${post.id})}'|"
+                    type="button">게시글 수정</button>
+
         </div>
         <div class="col">
-            <button class="w-100 btn btn-secondary btn-lg" onclick="location.href='posts.html'" type="button">목록으로</button>
+            <button class="w-100 btn btn-secondary btn-lg"
+                    onclick="location.href='posts.html'"
+                    th:onclick="|location.href='@{/basic/posts}'|"
+                    type="button">목록으로</button>
         </div>
     </div>
 </div> <!-- /container -->

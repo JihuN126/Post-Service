@@ -13,4 +13,8 @@ public class Post {
         this.content = content;
         this.writer = writer;
     }
+    public Post(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }

@@ -26,7 +26,7 @@ public class BasicPostController {
         return "basic/addForm";
     }
     @PostMapping("/add")
-    public String save(@RequestParam String postTitle,
+    public String addPost(@RequestParam String postTitle,
                        @RequestParam String postContent,
                        @RequestParam String postWriter,
                        Model model) {
@@ -34,6 +34,28 @@ public class BasicPostController {
         postRepository.save(post);
         model.addAttribute("post",post);
         return "redirect:/basic/posts";
+    }
+    @GetMapping("/{postId}")
+    public String post(@PathVariable(name="postId") long postId, Model model) {
+        Post post = postRepository.findById(postId);
+        model.addAttribute("post",post);
+        return "basic/post";
+    }
+    @GetMapping("/{postId}/edit")
+    public String editForm(@PathVariable(name="postId") long postId, Model model) {
+        Post post = postRepository.findById(postId);
+        model.addAttribute("post",post);
+        return "basic/editForm";
+    }
+    @PostMapping("/{postId}/edit")
+    public String edit(@PathVariable(name="postId") long postId,
+                       @RequestParam String postTitle,
+                       @RequestParam String postContent,
+                       Model model) {
+        Post post = new Post(postTitle, postContent);
+        postRepository.update(postId,post);
+        model.addAttribute("post",post);
+        return "redirect:/basic/posts/{postId}";
     }
     @PostConstruct
     public void init() {
