@@ -5,25 +5,25 @@
     <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f0f7f4; /* 민트색 비슷한 배경색 */
+            background-color: #f0f7f4;
         }
         h2 {
-            color: #009688; /* 민트색 비슷한 제목색 */
+            color: #009688;
         }
         .btn-primary {
-            background-color: #009688; /* 민트색 비슷한 버튼색 */
-            border-color: #009688; /* 민트색 비슷한 버튼 테두리색 */
+            background-color: #009688;
+            border-color: #009688;
         }
         .btn-primary:hover {
-            background-color: #00796b; /* 버튼에 호버되었을 때 색상 변경 */
-            border-color: #00796b; /* 버튼에 호버되었을 때 테두리 색상 변경 */
+            background-color: #00796b;
+            border-color: #00796b;
         }
         .table th {
-            background-color: #009688; /* 민트색 비슷한 테이블 헤더 배경색 */
-            color: #fff; /* 헤더 텍스트 색상 */
+            background-color: #009688;
+            color: #fff;
         }
         .table .comment-link {
-            color: #009688; /* 민트색 비슷한 댓글 링크 색상 */
+            color: #009688;
         }
     </style>
 </head>
@@ -61,12 +61,12 @@
                 <td class="text-end">
                     <a class="comment-link" href="#"
                        th:href="@{/basic/posts/{postId}/commentslist(postId=${post.id})}"
-                       th:text="${post.title}">댓글</a>
+                       th:text="'댓글(' + ${post.commentContent.size()} + ')'">댓글</a>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-</div> <!-- /container -->
+</div>
 </body>
 </html>

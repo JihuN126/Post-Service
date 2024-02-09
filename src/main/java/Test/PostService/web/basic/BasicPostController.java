@@ -82,12 +82,10 @@ public class BasicPostController {
         Post post = postRepository.findById(postId);
         post.setCommentContent(commentContent);
         post.setCommentWriter(commentWriter);
-        model.addAttribute("post",post);
+        model.addAttribute("commentContent", commentContent);
+        model.addAttribute("commentWriter", commentWriter);
         System.out.println(post.commentContent.size());
         System.out.println(post.commentWriter.size());
-//        for(int i=0;i<post.commentContent.size();i++) {
-//            System.out.println(post.commentContent.get(i));
-//        }
         return "redirect:/basic/posts/{postId}/commentslist";
     }
     @PostConstruct

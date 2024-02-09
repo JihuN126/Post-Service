@@ -27,6 +27,6 @@ public class Post {
         this.commentContent.add(commentContent);
     }
     public void setCommentWriter(String commentWriter) {
-        this.commentContent.add(commentWriter);
+        this.commentWriter.add(commentWriter);
     }
 }
