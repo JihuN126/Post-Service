@@ -37,13 +37,11 @@ public class BasicPostController {
     @GetMapping("/{postId}")
     public String post(@PathVariable(name="postId") long postId, Model model) {
         Post post = postRepository.findById(postId);
-        System.out.println("BasicPostController.post");
         model.addAttribute("post",post);
         return "basic/post";
     }
     @GetMapping("/{postId}/edit")
     public String editForm(@PathVariable(name="postId") long postId, Model model) {
-        System.out.println("BasicPostController.editForm");
         Post post = postRepository.findById(postId);
         model.addAttribute("post",post);
         return "basic/editForm";
@@ -54,7 +52,6 @@ public class BasicPostController {
                        @RequestParam String postContent,
                        Model model) {
         Post post = new Post(postTitle, postContent);
-        System.out.println("BasicPostController.edit");
         postRepository.update(postId,post);
         model.addAttribute("post",post);
         return "redirect:/basic/posts/{postId}";
@@ -63,13 +60,11 @@ public class BasicPostController {
     public String commentList(@PathVariable(name="postId") long postId, Model model) {
         Post post = postRepository.findById(postId);
         model.addAttribute("post",post);
-        System.out.println("BasicPostController.commentList");
         return "basic/commentList";
     }
     @GetMapping("/{postId}/comments")
     public String commentForm(@PathVariable(name="postId") long postId, Model model) {
         Post post = postRepository.findById(postId);
-        System.out.println("BasicPostController.commentForm");
         model.addAttribute("post",post);
         return "basic/commentForm";
     }
@@ -78,14 +73,11 @@ public class BasicPostController {
                           @RequestParam String commentContent,
                           @RequestParam String commentWriter,
                           Model model) {
-        System.out.println("BasicPostController.comment");
         Post post = postRepository.findById(postId);
         post.setCommentContent(commentContent);
         post.setCommentWriter(commentWriter);
         model.addAttribute("commentContent", commentContent);
         model.addAttribute("commentWriter", commentWriter);
-        System.out.println(post.commentContent.size());
-        System.out.println(post.commentWriter.size());
         return "redirect:/basic/posts/{postId}/commentslist";
     }
     @PostConstruct
